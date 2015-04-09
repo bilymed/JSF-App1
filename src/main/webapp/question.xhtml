@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsf/core"
+	xmlns:f="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:shiro="http://shiro.apache.org/tags">
+
+<f:composition template="layout.xhtml">
+	<f:define name="content">
+		<h:form id="myform">
+			<h3><h:outputLabel value="#{homeController.question.title}" /></h3>
+			<h:outputLabel value="#{homeController.question.content}" />
+			<hr />
+			<h:dataTable styleClass="table table-striped" var="answer"
+				value="#{answerController.answers}">
+				<h:column>
+					<h:outputText value="#{answer.id}" />
+				</h:column>
+				<h:column>
+					<h:outputText value="#{answer.content}" />
+				</h:column>
+			</h:dataTable>
+			<hr />
+			<shiro:notAuthenticated>
+			<p>
+				Please
+				<h:commandLink action="login" value=" Log in" />
+				to add your Answer!
+			</p>
+			</shiro:notAuthenticated>
+			<shiro:authenticated>
+				<h:inputTextarea styleClass="form-control"
+					value="#{answerController.answer.content}" rows="3" />
+					<h:commandButton action="#{answerController.save()}" value="Post your answer" class="btn btn-primary" style="margin-top:5px" />
+			</shiro:authenticated>
+			
+			<h:messages id="message"/>
+		</h:form>
+	</f:define>
+</f:composition>
+
+</html>
+

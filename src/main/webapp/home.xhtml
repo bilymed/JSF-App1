@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsf/core"
+	xmlns:f="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<f:composition template="layout.xhtml">
+	<f:define name="content">
+		<h:form id="myform">
+
+			<ul class="nav nav-tabs" role="tablist">
+				<f:repeat var="category" value="#{homeController.categories}">
+					<li data-toggle="tab">
+					<a href="#category_#{category.id}" data-toggle="tab">#{category.name}</a>
+					</li>
+				</f:repeat>
+			</ul>
+
+			<div class="tab-content">
+				<f:repeat var="category" value="#{homeController.categories}">
+					<div role="tabpanel" class="tab-pane active" id="category_#{category.id}">
+					<h:dataTable  styleClass="table table-striped" var="question" value="#{category.questions}">
+						<h:column>
+							<p><h:outputText value="#{question.user.username}" /></p>
+						</h:column>
+						<h:column>
+							<h:commandLink value="#{question.title}" action="question">
+							<c:setPropertyActionListener value="#{question}" target="#{homeController.question}" />
+							</h:commandLink>
+						</h:column>
+					</h:dataTable>
+					</div>
+				</f:repeat>
+			</div>
+
+
+			<script>
+				$(document).ready(function() {
+					$('.nav-tabs a:first').tab('show'); // Select first tab
+				});
+			</script>
+
+		</h:form>
+	</f:define>
+</f:composition>
+
+</html>
+

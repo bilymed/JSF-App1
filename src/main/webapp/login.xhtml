@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsf/core"
+	xmlns:f="http://java.sun.com/jsf/facelets">
+
+<f:composition template="layout.xhtml">
+	<f:define name="content">
+
+		<h:form styleClass="form-signin">
+			<h:messages />
+
+			<h2>Login Page</h2>
+			<p>You can use "admin" and "secret" to login.</p>
+			<h:panelGrid columns="3">
+
+				<h:outputLabel for="username" value="User Name:" />
+				<h:inputText styleClass="form-control" id="username"
+					value="#{loginController.username}" required="true"
+					label="Username" />
+				<h:message for="username" />
+
+				<h:outputLabel for="password" value="Password:" />
+				<h:inputSecret styleClass="form-control" id="password"
+					value="#{loginController.password}" label="Password" />
+				<h:message for="password" />
+
+				<h:outputLabel for="rememberMe" value="Remember Me:" />
+				<h:selectBooleanCheckbox id="rememberMe"
+					value="#{loginController.rememberMe}" />
+
+				<h:commandButton styleClass="btn btn-lg btn-primary btn-block"
+					action="#{loginController.authenticate()}" value="Login" />
+
+			</h:panelGrid>
+		</h:form>
+
+		<!-- 
+		<form class="form-signin" role="form"
+			action="/j_spring_security_check" method="POST">
+			<h2 class="form-signin-heading">Please sign in</h2>
+			<label for="inputEmail" class="sr-only">Email address</label> <input
+				type="text" name="j_username" class="form-control"
+				placeholder="Enter your name" /> <label for="inputPassword"
+				class="sr-only">Password </label> <input type="password"
+				name="j_password" class="form-control"
+				placeholder="Enter you password" />
+			<button class="btn btn-lg btn-primary btn-block" type="submit">
+				<span class="glyphicon glyphicon-log-in"></span> Sign in
+			</button>
+		</form> -->
+	</f:define>
+</f:composition>
+
+</html>
+

@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsf/core"
+	xmlns:f="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<f:composition template="layout.xhtml">
+	<f:define name="content">
+		<h:form id="myform">
+
+			<h:dataTable styleClass="table table-striped" var="question"
+				value="#{homeController.questions}">
+				<h:column>
+					<p>
+						<h:outputText value="#{question.user.username}" />
+					</p>
+				</h:column>
+				<h:column>
+					<h:commandLink value="#{question.title}" action="question">
+						<c:setPropertyActionListener value="#{question}"
+							target="#{homeController.question}" />
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+
+		</h:form>
+	</f:define>
+</f:composition>
+
+</html>
+
