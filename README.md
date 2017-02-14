@@ -1,1 +1,1 @@
-# JSF simple-cms2
+# JSF simple-app2
