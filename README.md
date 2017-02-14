@@ -1,1 +1,1 @@
-# JSF simple-app2
+# JSF simple-app1
